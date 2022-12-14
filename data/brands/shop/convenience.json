@@ -46,6 +46,16 @@
   },
   "items": [
     {
+      "displayName": "Usave",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "brand": "Usave",
+        "brand:wikidata": "Q115696368",
+        "name": "Usave",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "10-11",
       "id": "1011-ead397",
       "locationSet": {"include": ["is"]},
