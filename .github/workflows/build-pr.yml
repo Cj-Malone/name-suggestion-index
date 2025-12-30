@@ -11,6 +11,7 @@ jobs:
   build-pr:
     runs-on: ubuntu-latest
     permissions:
+      contents: write
       pull-requests: write
 
     strategy:
@@ -23,11 +24,6 @@ jobs:
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.head_ref }}
-    - run: echo "The event type is ${{ github.event.action }}"
-    - run: echo "The ref is ${{ github.event.pull_request.head.ref }}"
-    - run: git show
-    - run: cat data/brands/advertising/totem.json
-    - run: git status
     - name: Use Bun ${{ matrix.bun-version }}
       uses: oven-sh/setup-bun@v2
       with:
@@ -37,14 +33,11 @@ jobs:
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
     - run: bun run all
-    - run: cat data/brands/advertising/totem.json
-    - run: git status
     - run: |
         DIFF=$(git diff data/)
         echo "DIFF<<EOF" >> $GITHUB_ENV
         echo "$DIFF" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
-    - run: echo "${{ env.DIFF }}"
     - name: Comment PR
       if: ${{ env.DIFF }}
       uses: thollander/actions-comment-pull-request@v3
