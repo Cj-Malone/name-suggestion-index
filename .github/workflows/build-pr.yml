@@ -1,7 +1,7 @@
 name: build pr
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [ main ]
 
 env:
@@ -20,7 +20,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v5
-    - run: gh pr checkout ${{ github.event.number }}
     - run: echo "The event type is ${{ github.event.action }}"
     - run: echo "The ref is ${{ github.event.pull_request.head.ref }}"
     - run: git show
