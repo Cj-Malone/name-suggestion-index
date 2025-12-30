@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/checkout@v5
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
+        ref: ${{ github.head_ref }}
     - run: echo "The event type is ${{ github.event.action }}"
     - run: echo "The ref is ${{ github.event.pull_request.head.ref }}"
     - run: git show
