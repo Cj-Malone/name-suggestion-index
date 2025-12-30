@@ -5,6 +5,7 @@
     "skipCollection": true,
     "exclude": {"generic": ["^totem$"]}
   },
+
   "items": [
     {
       "templateSource": "brands/amenity/fuel",
