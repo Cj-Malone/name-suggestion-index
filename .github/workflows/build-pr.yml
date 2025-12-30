@@ -37,7 +37,7 @@ jobs:
     - run: |
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
-    - run: bun run build
+    - run: bun run all
     - run: cat data/brands/advertising/totem.json
     - run: git status
     - run: |
@@ -54,3 +54,6 @@ jobs:
           ```diff
           ${{ env.DIFF }}
           ```
+    - uses: stefanzweifel/git-auto-commit-action@v7
+      with:
+        add_options: '-A'
