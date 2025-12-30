@@ -24,7 +24,8 @@ jobs:
         ref: ${{ github.event.pull_request.head.ref }}
     - run: echo "The event type is ${{ github.event.action }}"
     - run: echo "The ref is ${{ github.event.pull_request.head.ref }}"
-    - run: ls
+    - run: git show
+    - run: cat data/brands/advertising/totem.json
     - run: git status
     - name: Use Bun ${{ matrix.bun-version }}
       uses: oven-sh/setup-bun@v2
@@ -35,6 +36,7 @@ jobs:
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
     - run: bun run build
+    - run: cat data/brands/advertising/totem.json
     - run: git status
     - uses: stefanzweifel/git-auto-commit-action@v7
       with:
