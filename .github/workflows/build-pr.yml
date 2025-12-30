@@ -39,6 +39,10 @@ jobs:
     - run: bun run build
     - run: cat data/brands/advertising/totem.json
     - run: git status
-    - uses: stefanzweifel/git-auto-commit-action@v7
-      with:
-        add_options: '-A'
+    - name: Commit built data
+      run: |
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config user.name "GitHub Actions"
+        git add -A
+        git diff --cached --exit-code || git commit -m "build"
+        git push
