@@ -40,8 +40,8 @@ jobs:
     - run: cat data/brands/advertising/totem.json
     - run: git status
     - run: |
-      DIFF=$(git diff data/)
-      echo "DIFF={$DIFF}" >> "$GITHUB_ENV"
+        DIFF=$(git diff data/)
+        echo "DIFF={$DIFF}" >> "$GITHUB_ENV"
     - run: echo "${{ env.DIFF }}"
     - name: Comment PR
       if: ${{ env.DIFF }}
