@@ -39,10 +39,10 @@ jobs:
     - run: bun run build
     - run: cat data/brands/advertising/totem.json
     - run: git status
-    - name: Commit built data
-      run: |
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git config user.name "GitHub Actions"
-        git add -A
-        git diff --cached --exit-code || git commit -m "build"
-        git push
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@v3
+      with:
+        message: |
+          ```diff
+          ${{ git diff data/ }}
+          ```
