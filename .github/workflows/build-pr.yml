@@ -39,10 +39,12 @@ jobs:
     - run: bun run build
     - run: cat data/brands/advertising/totem.json
     - run: git status
+    - run: DIFF=$(git diff data/)
     - name: Comment PR
+      if: ${{ env.DIFF }}
       uses: thollander/actions-comment-pull-request@v3
       with:
         message: |
           ```diff
-          ${{ git diff data/ }}
+          ${{ env.DIFF }}
           ```
